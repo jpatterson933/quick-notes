@@ -27,7 +27,9 @@ app.post('/api/notes', (req, res) => {
     const newNote = req.body;
     notes.push(newNote);
     res.json(notes)
-    
+})
+app.post('/notes', (req, res) => {
+    res.json(notes)
 })
 
 
