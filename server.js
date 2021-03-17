@@ -7,7 +7,7 @@ const uuid = require('uuid')
 const PORT = process.env.PORT || 7000;
 const notes = require('./notes')
 
-
+//helps me track what I am clicking
 const logger = require('./middleware/logger')
 //middleware practice
 app.use(logger);
@@ -31,7 +31,6 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/Develop/public', 'notes.html'))
 });
 
-
 //this route grabs all notes
 app.get('/api/notes', (req, res) => res.json(notes));
 
@@ -48,9 +47,15 @@ app.post('/api/notes', (req, res) => {
     } 
 
     notes.push(newNote);
-
     res.json(newNote)
 
+    // fs.writeFile('db.json', notes, (err) => {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         console.log("this worked")
+    //     }
+    // })
 })
 
 // app.post('/api/notes', (req, res) => {
@@ -61,6 +66,16 @@ app.post('/api/notes', (req, res) => {
 app.post('/notes', (req, res) => {
     res.json(notes)
 })
+
+// app.put('/api/notes:id', (req, res) => {
+//     const found = notes.some(note => note.id === req.params.id);
+//     if (found) {
+//         const deleteNote = req.body;
+//         console.log("this line")
+//     } else {
+//         res.status(400).json({ msg: `no member with the id of ${req.params.id}`})
+//     }
+// })
 
 
 
