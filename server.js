@@ -48,34 +48,18 @@ app.post('/api/notes', (req, res) => {
 
     notes.push(newNote);
     res.json(newNote)
-
-    // fs.writeFile('db.json', notes, (err) => {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         console.log("this worked")
-    //     }
-    // })
+    // this will now write the file into db.json into a string and the delete button works
+    //but it only writes one string at a time
+    fs.writeFile('db.json', JSON.stringify(notes), function (err) {
+        if (err) return console.log(err);
+        console.log(`Your objects have been saved!`);
+      });
 })
 
-// app.post('/api/notes', (req, res) => {
-//     const newNote = req.body;
-//     notes.push(newNote);
-//     res.json(notes)
-// })
 app.post('/notes', (req, res) => {
     res.json(notes)
 })
 
-// app.put('/api/notes:id', (req, res) => {
-//     const found = notes.some(note => note.id === req.params.id);
-//     if (found) {
-//         const deleteNote = req.body;
-//         console.log("this line")
-//     } else {
-//         res.status(400).json({ msg: `no member with the id of ${req.params.id}`})
-//     }
-// })
 
 
 
